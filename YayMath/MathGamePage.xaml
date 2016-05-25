@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		x:Class="YayMath.MathGamePage"
+		xmlns:local="clr-namespace:YayMath;assembly=YayMath">
+	
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<local:MathProblemViewModelToStringConverter x:Key="mathProblemConverter" />
+		</ResourceDictionary>
+	</ContentPage.Resources>
+	
+	<ContentPage.Content>
+		<StackLayout>
+			<StackLayout 
+					Orientation="Horizontal"
+					VerticalOptions = "CenterAndExpand"
+					HorizontalOptions = "Fill">
+				<Label 
+						HorizontalOptions="CenterAndExpand"
+						XAlign = "Center"
+						FontSize = "40"
+						Text="{Binding CurrentProblem, Converter={StaticResource mathProblemConverter}}" />
+			</StackLayout>
+			<StackLayout 
+					HeightRequest="100"
+					VerticalOptions = "CenterAndExpand"
+					Orientation="Horizontal" >
+				<Button 
+						HorizontalOptions = "FillAndExpand"
+						FontSize = "30"
+						BackgroundColor="Transparent"
+						Text="{Binding CurrentProblem.Option1}" 
+						IsEnabled="{Binding ReadyForAnswer}"
+						Command = "{Binding SelectAnswer}"
+						CommandParameter="{Binding CurrentProblem.Option1}" />
+				<Button 
+						HorizontalOptions = "FillAndExpand"
+						VerticalOptions = "FillAndExpand"
+						FontSize = "30"
+						BackgroundColor="Transparent"
+						Text="{Binding CurrentProblem.Option2}" 
+						IsEnabled="{Binding ReadyForAnswer}"
+						Command = "{Binding SelectAnswer}"
+						CommandParameter="{Binding CurrentProblem.Option2}" />
+					
+				<Button 
+						HorizontalOptions = "FillAndExpand"
+						FontSize = "30"
+						BackgroundColor="Transparent"
+						Text="{Binding CurrentProblem.Option3}" 
+						IsEnabled="{Binding ReadyForAnswer}"
+						Command = "{Binding SelectAnswer}"
+						CommandParameter="{Binding CurrentProblem.Option3}" />
+			</StackLayout>
+			<Label
+					XAlign = "Center"
+					VerticalOptions = "CenterAndExpand"
+					Text = "{Binding Status}" />
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

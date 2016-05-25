@@ -1,0 +1,5 @@
+*.designer.cs
+packages
+bin
+obj
+*.userprefs
