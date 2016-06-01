@@ -111,6 +111,12 @@
     
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\SharedResources\Boo.m4a">
+      <Link>Assets\Boo.m4a</Link>
+    </Content>
+    <Content Include="..\SharedResources\Yay.m4a">
+      <Link>Assets\Yay.m4a</Link>
+    </Content>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -131,6 +137,12 @@
     </Page>
   </ItemGroup>
   
+  <ItemGroup>
+    <ProjectReference Include="..\YayMath\YayMath.csproj">
+      <Project>{dccb174c-30e1-4816-a4fd-3306b2961527}</Project>
+      <Name>YayMath</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
