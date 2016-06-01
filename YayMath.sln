@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedResources", "SharedRe
 		SharedResources\Yay.m4a = SharedResources\Yay.m4a
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YayMath.UWP", "YayMath.UWP\YayMath.UWP.csproj", "{83467A81-41FA-4AF8-90F6-9EC6FB75924F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YayMath.UWP", "UWP\YayMath.UWP.csproj", "{83467A81-41FA-4AF8-90F6-9EC6FB75924F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
