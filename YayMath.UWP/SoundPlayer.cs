@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
@@ -14,11 +16,24 @@ namespace YayMath.UWP
 
         public SoundPlayer ()
         {
-            CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync (CoreDispatcherPriority.Normal, () =>
+            LoadStream ("Boo.m4a").ContinueWith (task => booSound = task.Result);
+            LoadStream ("Yay.m4a").ContinueWith (task => yaySound = task.Result);
+        }
+
+        private async Task<MediaElement> LoadStream (string name)
+        {
+            var assets = await Package.Current.InstalledLocation.GetFolderAsync ("Assets");
+            var file = await assets.GetFileAsync (name);
+            var stream = await file.OpenReadAsync ();
+
+            MediaElement sound = null;
+            await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync (CoreDispatcherPriority.Normal, () =>
             {
-                booSound = new MediaElement { Source = new Uri ("ms-appx:///Assets/Boo.m4a") };
-                yaySound = new MediaElement { Source = new Uri ("ms-appx:///Assets/Yay.m4a") };
-            }).AsTask ();
+                sound = new MediaElement ();
+                sound.AutoPlay = false;
+                sound.SetSource (stream, file.ContentType);
+            });
+            return sound;
         }
 
         public void PlayBoo ()
