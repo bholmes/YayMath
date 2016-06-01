@@ -3,7 +3,8 @@
 		xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		x:Class="YayMath.MathGamePage"
-		xmlns:local="clr-namespace:YayMath;assembly=YayMath">
+		xmlns:local="clr-namespace:YayMath;assembly=YayMath"
+		Title="Yay! Math" Padding="12">
 	
 	<ContentPage.Resources>
 		<ResourceDictionary>
