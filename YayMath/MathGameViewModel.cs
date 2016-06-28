@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -11,13 +12,14 @@ namespace YayMath
         const string incorrectAnswerMessage = "Incorrect.  Please try again.";
 
         MathProblemViewModel currentProblem;
+        ISoundPlayer soundPlayer;
 
         public MathGameViewModel ()
         {
             currentProblem = new MathProblemViewModel (MathProblemCreator.CreateProblem ());
             status = selectAnswerMessage;
             readyForAnswer = true;
-            System.Threading.Tasks.Task.Factory.StartNew (() => DependencyService.Get<ISoundPlayer> ());
+            Task.Run (() => soundPlayer = DependencyService.Get<ISoundPlayer> ());
             SelectAnswer = new Command<int> ((val) => OnSelectAnswer (val).NoWarning ());
         }
 
@@ -61,15 +63,15 @@ namespace YayMath
             }
         }
 
-        async System.Threading.Tasks.Task OnSelectAnswer (int value)
+        async Task OnSelectAnswer (int value)
         {
             if (CurrentProblem.Answer == value) {
                 Status = correctAnswerMessage;
                 ReadyForAnswer = false;
 
-                DependencyService.Get<ISoundPlayer> ().PlayYay ();
+                soundPlayer?.PlayYay ();
 
-                await System.Threading.Tasks.Task.Delay (1500);
+                await Task.Delay (1500);
 
                 var lproblem = MathProblemCreator.CreateProblem ();
                 CurrentProblem = new MathProblemViewModel (lproblem);
@@ -78,7 +80,7 @@ namespace YayMath
                 ReadyForAnswer = true;
             } else {
                 Status = incorrectAnswerMessage;
-                DependencyService.Get<ISoundPlayer> ().PlayBoo ();
+                soundPlayer?.PlayBoo ();
             }
         }
     }

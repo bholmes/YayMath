@@ -18,7 +18,7 @@ namespace YayMath
 
         protected void RaisePropertyChanged ([CallerMemberName] string propertyName = "")
         {
-            PropertyChanged.Invoke (this, new PropertyChangedEventArgs (propertyName));
+            PropertyChanged?.Invoke (this, new PropertyChangedEventArgs (propertyName));
         }
 
         protected void RaiseAllPropertiesChanged ()
