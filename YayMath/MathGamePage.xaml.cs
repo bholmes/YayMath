@@ -11,8 +11,16 @@ namespace YayMath
 
             BindingContext = new MathGameViewModel ();
         }
+
+        public MathProblemType ProblemType
+        {
+            get {
+                return (BindingContext as MathGameViewModel).ProblemType;
+            }
+            set {
+                (BindingContext as MathGameViewModel).ProblemType = value;
+            }
+        }
     }
-
-
 }
 

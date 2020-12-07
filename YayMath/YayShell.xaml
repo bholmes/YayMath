@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:yaymath="clr-namespace:YayMath"
+       x:Class="YayMath.YayShell">
+
+    <FlyoutItem Title="Addition and Subtraction">
+        <yaymath:MathGamePage>
+            <yaymath:MathGamePage.ProblemType>
+                <x:Static Member="yaymath:MathProblemType.PositiveAdditionOrSubtraction" />
+            </yaymath:MathGamePage.ProblemType>
+        </yaymath:MathGamePage>
+    </FlyoutItem>
+    <FlyoutItem Title="Signed Addition and Subtraction">
+        <yaymath:MathGamePage>
+            <yaymath:MathGamePage.ProblemType>
+                <x:Static Member="yaymath:MathProblemType.SignedAdditionOrSubrtaction" />
+            </yaymath:MathGamePage.ProblemType>
+        </yaymath:MathGamePage>
+    </FlyoutItem>
+    <FlyoutItem Title="Multiplication">
+        <yaymath:MathGamePage>
+            <yaymath:MathGamePage.ProblemType>
+                <x:Static Member="yaymath:MathProblemType.PositiveMultiplication" />
+            </yaymath:MathGamePage.ProblemType>
+        </yaymath:MathGamePage>
+    </FlyoutItem>
+    <FlyoutItem Title="Signed Multiplication">
+        <yaymath:MathGamePage>
+            <yaymath:MathGamePage.ProblemType>
+                <x:Static Member="yaymath:MathProblemType.SignedMultiplication" />
+            </yaymath:MathGamePage.ProblemType>
+        </yaymath:MathGamePage>
+    </FlyoutItem>
+
+</Shell>

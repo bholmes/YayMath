@@ -6,6 +6,7 @@ namespace YayMath
     {
         Add,
         Subtract,
+        Multiply,
     }
 }
 

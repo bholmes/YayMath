@@ -8,7 +8,7 @@ namespace YayMath
     {
         public App ()
         {
-            MainPage = new NavigationPage (new MathGamePage ());
+            MainPage = new YayShell ();
         }
 
         protected override void OnStart ()

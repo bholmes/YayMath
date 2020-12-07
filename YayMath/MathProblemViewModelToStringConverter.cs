@@ -11,10 +11,22 @@ namespace YayMath
         {
             var val = (MathProblemViewModel)value;
 
-            return string.Format ("{0} {1} {2} =",
-                                 val.Value1,
-                                 val.Operand == Operand.Add ? "+" : "-",
-                                 val.Value2);
+            return $"{val.Value1} {OperandToString (val.Operand)} {val.Value2} =";
+        }
+
+        string OperandToString (Operand operand)
+        {
+            switch (operand)
+            {
+                case Operand.Add:
+                    return "+";
+                case Operand.Subtract:
+                    return "-";
+                case Operand.Multiply:
+                    return "*";
+                default:
+                    throw new NotImplementedException ();
+            }
         }
 
         public object ConvertBack (object value, Type targetType,

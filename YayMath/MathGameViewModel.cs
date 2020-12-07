@@ -14,11 +14,10 @@ namespace YayMath
         MathProblemViewModel currentProblem;
         ISoundPlayer soundPlayer;
 
-        public MathGameViewModel ()
+        public MathGameViewModel (MathProblemType problemType = MathProblemType.PositiveAdditionOrSubtraction)
         {
-            currentProblem = new MathProblemViewModel (MathProblemCreator.CreateProblem ());
-            status = selectAnswerMessage;
-            readyForAnswer = true;
+            this.problemType = problemType;
+            CreateProblem ();
             Task.Run (() => soundPlayer = DependencyService.Get<ISoundPlayer> ());
             SelectAnswer = new Command<int> ((val) => OnSelectAnswer (val).NoWarning ());
         }
@@ -33,6 +32,23 @@ namespace YayMath
                 if (currentProblem == value)
                     return;
                 currentProblem = value;
+                RaisePropertyChanged ();
+            }
+        }
+
+        MathProblemType problemType;
+        public MathProblemType ProblemType
+        {
+            get
+            {
+                return problemType;
+            }
+            set
+            {
+                if (problemType == value)
+                    return;
+                problemType = value;
+                CreateProblem ();
                 RaisePropertyChanged ();
             }
         }
@@ -63,6 +79,15 @@ namespace YayMath
             }
         }
 
+        void CreateProblem ()
+        {
+            var lproblem = MathProblemCreator.CreateProblem (ProblemType);
+            CurrentProblem = new MathProblemViewModel (lproblem);
+            Status = selectAnswerMessage;
+
+            ReadyForAnswer = true;
+        }
+
         async Task OnSelectAnswer (int value)
         {
             if (CurrentProblem.Answer == value) {
@@ -73,11 +98,7 @@ namespace YayMath
 
                 await Task.Delay (1500);
 
-                var lproblem = MathProblemCreator.CreateProblem ();
-                CurrentProblem = new MathProblemViewModel (lproblem);
-                Status = selectAnswerMessage;
-
-                ReadyForAnswer = true;
+                CreateProblem ();
             } else {
                 Status = incorrectAnswerMessage;
                 soundPlayer?.PlayBoo ();
